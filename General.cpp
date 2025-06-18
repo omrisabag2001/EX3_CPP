@@ -1,6 +1,4 @@
-//
-// Created by  Omri Sabag on 28/05/2025.
-//
+//gunrhxcd2001@gmail.com
 
 #include "General.hpp"
 #include "Player.hpp"
