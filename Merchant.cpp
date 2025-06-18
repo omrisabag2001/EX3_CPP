@@ -1,7 +1,6 @@
-//
-// Created by  Omri Sabag on 28/05/2025.
-//
+// Email: gunrhxcd2001@gmail.com
 
+#include <iostream>
 #include "Merchant.hpp"
 #include "Player.hpp"
 using namespace coup;

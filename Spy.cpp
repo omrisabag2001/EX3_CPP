@@ -1,6 +1,5 @@
-//
-// Created by  Omri Sabag on 28/05/2025.
-//
+// Email: gunrhxcd2001@gmail.com
+
 #include <iostream>
 #include "Spy.hpp"
 #include "Player.hpp"
@@ -16,13 +15,13 @@ int Spy:: peekCoins(Player &target) const{
 }
 
 
-void Spy::BlockArrest(Player &target){
+void Spy::blockArrest(Player &target){
   if(this->GetName()==_game.turn()){
       if(this->active){
         if(target.isActive()){
-          if(blockArrest_flag == true){
+          if(special_ability == true){
        		 target.blockArrest();
-              blockArrest_flag=false;
+              special_ability=false;
         	  cout<<"Spy preformed BlockArrest"<<endl;
 
        	   }else{throw std::runtime_error("BlockArrest can be preformed only once each turn!");}
@@ -35,9 +34,6 @@ void Spy::BlockArrest(Player &target){
 
 }
 
-void Spy::onTurnStart(){
-  blockArrest_flag=true;
-}
 
 string Spy::role() const {
     return "Spy";

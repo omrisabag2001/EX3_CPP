@@ -1,6 +1,5 @@
-//
-// Created by  Omri Sabag on 08/05/2025.
-//
+// Email: gunrhxcd2001@gmail.com
+
 #include "Player.hpp"
 
 #ifndef JUDGE_HPP

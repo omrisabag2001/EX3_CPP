@@ -1,3 +1,5 @@
+// Email: gunrhxcd2001@gmail.com
+
 #include "RoleFactory.hpp"
 #include "Governor.hpp"
 #include "Spy.hpp"

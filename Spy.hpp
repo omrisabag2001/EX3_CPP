@@ -1,3 +1,5 @@
+// Email: gunrhxcd2001@gmail.com
+
 #pragma once
 #include "Player.hpp"
 
@@ -6,13 +8,11 @@
 
 namespace coup {
     class Spy : public Player {
-        bool blockArrest_flag = true;
     public:
         Spy(Game& game,const string& name) : Player(game,name){}
          ~Spy() override = default;
         int peekCoins(Player &target) const;
-        void BlockArrest(Player &target);
-        void onTurnStart() override;
+        void blockArrest(Player &target);
         std::string role() const override;
 
     };

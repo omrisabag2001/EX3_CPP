@@ -1,6 +1,5 @@
-//
-// Created by  Omri Sabag on 28/05/2025.
-//
+// Email: gunrhxcd2001@gmail.com
+
 #include <iostream>
 #include "Game.hpp"
 #include "Baron.hpp"
@@ -21,14 +20,21 @@ using namespace coup;
       _game.NextTurn();
       }
 
+
   }
 
   void Baron::invest(){
       turnCheck();
    if(this->coins()>=3){
+    if(special_ability==true){
+      this->last_move = "invest";
      this->reduceCoins( 3);
      this->addCoins(6);
      _game.NextTurn();
+      special_ability = false;
+    }else{
+      throw std::runtime_error("Baron can only invest once per turn");
+    }
    }else
      throw std::runtime_error("Player do not have enough 3 coins to invest");
 

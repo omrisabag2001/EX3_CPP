@@ -1,5 +1,5 @@
 // tests.cpp
-// Email: your_email@example.com
+// Email: gunrhxcd2001@gmail.com
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "Game.hpp"
@@ -14,9 +14,12 @@ using namespace coup;
 
 
 //---------------------------------Turn Tests----------------------------------------------------------------------------
-
+   // we will not delete players in the end of the test
+    // this is for the test to work with the players created in the test cases.
 TEST_CASE("Basic turn's test") {
+
     Game game;
+    game.owns_players = false;
     Governor gov(game, "gov");
     Spy spy(game, "spy");
     CHECK(game.turn() == "gov");
@@ -29,6 +32,7 @@ TEST_CASE("Basic turn's test") {
 
 TEST_CASE("Extra turn test") {
     Game game;
+    game.owns_players = false;
     Governor gov(game, "gov");
     Judge Judge(game, "judge");
 
@@ -66,6 +70,7 @@ TEST_CASE("Extra turn test") {
 
 TEST_CASE("coup turn's test") {
     Game game;
+    game.owns_players = false;
     Governor gov(game, "gov");
     Spy spy(game, "spy");
     General general(game, "general");
@@ -111,7 +116,8 @@ undo coup when the player who did it play's again
 
 */
 TEST_CASE("coup check") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Governor gov(game, "Gov");
   General general(game, "Gen");
   Spy spy(game, "spy");
@@ -143,7 +149,8 @@ TEST_CASE("coup check") {
 
 
 TEST_CASE("coup check") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Governor gov(game, "Gov");
   General general(game, "Gen");
   Spy spy(game, "spy");
@@ -172,7 +179,8 @@ TEST_CASE("coup check") {
 
 
 TEST_CASE("when player has 10 coins he must preform coup!") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Spy spy(game, "spy");
   spy.tax();
   Governor gov(game, "Gov");
@@ -198,7 +206,8 @@ TEST_CASE("when player has 10 coins he must preform coup!") {
  3. till there next turn
 */
 TEST_CASE("Governor Role check") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Governor gov(game, "gov");
   Spy spy(game, "spy");
   Baron baron(game, "baron");
@@ -223,6 +232,7 @@ TEST_CASE("Governor Role check") {
 }
 TEST_CASE("Governor tax and undo") {
     Game game;
+    game.owns_players = false;
     Governor gov1(game, "Gov1");
     Governor gov2(game, "Gov2");
     gov1.tax();
@@ -248,7 +258,8 @@ TEST_CASE("Governor tax and undo") {
 
 
 TEST_CASE("Spy Role check") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Governor gov(game, "gov");
   Spy spy(game, "spy");
   Baron baron(game, "Baron");
@@ -256,8 +267,8 @@ TEST_CASE("Spy Role check") {
   CHECK_THROWS(spy.peekCoins(gov));
   gov.tax();
   CHECK(spy.peekCoins(gov) == 3);
-  spy.BlockArrest(gov);
-  CHECK_THROWS(spy.BlockArrest(baron));
+  spy.blockArrest(gov);
+  CHECK_THROWS(spy.blockArrest(baron));
 
   CHECK(game.turn() == "spy");
   spy.gather();
@@ -279,7 +290,8 @@ TEST_CASE("Spy Role check") {
 */
 
 TEST_CASE("Baron Role check") {
-  Game game;
+    Game game;
+    game.owns_players = false;
    Baron baron(game, "baron");
    Governor gov(game, "gov");
    Baron baron2(game, "baron2");
@@ -313,7 +325,8 @@ TEST_CASE("Baron Role check") {
 */
 
 TEST_CASE("General self undo") {
-  Game game;
+    Game game;
+    game.owns_players = false;
     Governor gov(game, "gov");
    gov.addCoins(7);
 
@@ -334,7 +347,8 @@ CHECK(game.turn() == "general");
 
 
 TEST_CASE("General undo other player") {
-  Game game;
+    Game game;
+    game.owns_players = false;
   Governor gov(game, "gov");
    gov.addCoins(7);
 
@@ -354,7 +368,8 @@ CHECK(general.coins()==0);
  // todo what happend if the other player has 0 coins and player arrest him he has -1?
 
  TEST_CASE("General coin back") {
-  Game game;
+    Game game;
+    game.owns_players = false;
  General general(game, "general");
  Governor gov(game, "gov");
  // general has 1 coin
@@ -379,6 +394,7 @@ CHECK(general.coins()==0);
 
  TEST_CASE("Judge undo bribe") {
     Game game;
+    game.owns_players = false;
     Governor gov(game, "Gov");
     Judge judge(game, "Judge");
     gov.addCoins(4);
@@ -388,8 +404,9 @@ CHECK(general.coins()==0);
 }
 
 TEST_CASE("Judge got sanction") {
+  Game game;
+    game.owns_players = false;
   //1.
-    Game game;
     Governor gov(game, "Gov");
     Baron baron(game, "baron");
     Judge judge(game, "Judge");
@@ -415,9 +432,10 @@ TEST_CASE("Judge got sanction") {
 
 
 TEST_CASE("Merchant coin bounus") {
-  //1.
     Game game;
-	Merchant merchant(game, "merchant");
+    game.owns_players = false;
+  //1.
+	  Merchant merchant(game, "merchant");
     Judge judge(game, "Judge");
     merchant.addCoins(2);
     merchant.gather();
@@ -429,8 +447,10 @@ TEST_CASE("Merchant coin bounus") {
 
 
 TEST_CASE("Merchant under arrest") {
+  Game game;
+    game.owns_players = false;
+  
  //2.
-    Game game;
 	Merchant merchant(game, "merchant");
     Judge judge(game, "Judge");
     merchant.tax();
